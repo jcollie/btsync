@@ -37,14 +37,14 @@ config = """{{
 
 if os.path.exists(syncdir):
     if not os.path.isdir(syncdir):
-        sys.stderr.write('{} isn\'t a directory!\n')
+        sys.stderr.write('{} isn\'t a directory!\n'.format(syncdir))
         sys.exit(1)
 else:
     os.mkdir(syncdir)
 
 if os.path.exists(syncconf):
     if not os.path.isfile(syncconf):
-        sys.stderr.write('{} isn\'t a file!\n')
+        sys.stderr.write('{} isn\'t a file!\n'.format(syncconf))
         sys.exit(1)
 else:
     open(syncconf, 'w').write(config)
