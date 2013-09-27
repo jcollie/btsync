@@ -1,0 +1,5 @@
+/.sconsign.dblite
+/results_btsync
+*~
+*.rpm
+*.tar.gz

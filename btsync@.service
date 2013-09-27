@@ -1,0 +1,12 @@
+[Unit]
+Description=BitTorrent Sync for %i
+
+[Service]
+Type=simple
+User=%i
+ExecStartPre=/usr/libexec/btsync-pre
+ExecStart=/usr/bin/btsync --nodaemon --config %h/.sync/sync.conf
+WorkingDirectory=%h
+
+[Install]
+WantedBy=multi-user.target

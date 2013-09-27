@@ -1,0 +1,50 @@
+#!/usr/bin/python
+# -*- mode: python; coding: utf-8 -*-
+
+import os
+import random
+import socket
+import string
+import sys
+
+hostname = socket.gethostname()
+syncdir = os.path.expanduser('~/.sync')
+syncconf = os.path.expanduser('~/.sync/sync.conf')
+port = random.randint(16384,37267)
+password = ''.join(map(lambda i: random.choice(string.ascii_letters +
+                                               string.digits),
+                       xrange(32)))
+
+config = """{{
+  "device_name": "{hostname:}",
+  "listening_port": 0,
+  "storage_path": "{syncdir:}",
+  "check_for_updates": true,
+  "use_upnp": true,
+  "download_limit": 0,                       
+  "upload_limit": 0, 
+  "webui" :
+  {{
+    "listen": "127.0.0.1:{port:}",
+    "login": "admin",
+    "password": "{password:}"
+  }}
+}}
+""".format(hostname = hostname,
+           syncdir = syncdir,
+           port = port,
+           password = password)
+
+if os.path.exists(syncdir):
+    if not os.path.isdir(syncdir):
+        sys.stderr.write('{} isn\'t a directory!\n')
+        sys.exit(1)
+else:
+    os.mkdir(syncdir)
+
+if os.path.exists(syncconf):
+    if not os.path.isfile(syncconf):
+        sys.stderr.write('{} isn\'t a file!\n')
+        sys.exit(1)
+else:
+    open(syncconf, 'w').write(config)
