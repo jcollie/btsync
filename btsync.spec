@@ -1,8 +1,8 @@
 %global __filter_GLIBC_PRIVATE 1
 
 Name:           btsync
-Version:        1.1.82
-Release:        3%{?dist}
+Version:        1.2.82
+Release:        1%{?dist}
 Summary:        BitTorrent Sync
 
 License:        Proprietary
@@ -57,6 +57,12 @@ install -p -m 0755 %{S:2} %{buildroot}%{_libexecdir}
 %{_libexecdir}/btsync-pre
 
 %changelog
+* Mon Dec  2 2013 Jeffrey Ollie <jeff@ocjtech.us> - 1.2.82-1
+- Update to 1.2.82
+
+* Fri Nov  8 2013 Jeffrey Ollie <jeff@ocjtech.us> - 1.2.68-1
+- Update to 1.2.68
+
 * Fri Sep 27 2013 Jeffrey Ollie <jeff@ocjtech.us> - 1.1.82-3
 - Fix logging in btsync-pre
 
